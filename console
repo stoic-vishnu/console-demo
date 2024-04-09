@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class console {
+
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+   String s;
+        ArrayList<String> list=new ArrayList<>();
+        ArrayList<String> valid=new ArrayList<>();
+        valid.add("computer");
+        valid.add("repeater");
+       
+        HashMap<String,Integer> map=new HashMap<>();
+        String strength="SET_DEVICE_STRENGTHSET_DEVICE_STRENGTH";
+       
+   while(sc.hasNext()){
+       s=sc.nextLine();
+       int t=1;
+       String str[]=s.split(" ");
+       if(str.length!=3) {
+        System.out.println("Invalid command syntax");
+        t=0;
+       }
+       else
+       {        
+       if(str[0].equals("ADD") && !valid.contains(str[1])) {
+        System.out.println("Invalid command syntax");
+        t=0;
+       }
+       
+       if(str[0].equals("ADD") && !list.contains(str[2]) && t==1)
+       {
+        list.add(str[2]);
+        map.put(str[2], 5);
+        System.out.println("Successfully added "+str[2]);
+       }
+       else if(str[0].equals("ADD") && list.contains(str[2]) && t==1)
+       {
+        System.out.println("That name already exists");
+       }
+       
+       if(strength.equals(str[0])) {
+        int val=Integer.parseInt(str[2]);
+        map.put(str[1], map.get(str[1])-map.get(str[1])+val);
+        System.out.println("Successfully added");
+       }
+       else if(strength.equals(str[0]) && !str[2].matches("[0-9]")) {
+        System.out.println("Invalid command syntax");
+       }
+       else if(str[0].equals("CONNECT")) {
+        String a=str[1];
+        String b=str[2];
+        if(a.equals(b)) {
+        System.out.println("Cannot connect device to itself");
+        }
+       
+       }
+       }
+       
+   }
+   
+}
+
+}
+
